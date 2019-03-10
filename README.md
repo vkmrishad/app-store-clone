@@ -37,3 +37,8 @@ And to start the django dev server:
 ## Missing Features
 * Not saving any images.
 * Improve scraping, searching and caching.
+
+## Version
+* Python : 3.6+
+* PostgreSql : 10+
+
