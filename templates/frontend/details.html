@@ -10,7 +10,7 @@
    <!-- /.col-lg-8 -->
    <div class="col-lg-5">
       <h3 class="font-weight-light">{{details.title}}</h3>
-      <span><a href="{{details.developer_url}}">{{details.developer}}</a></span>
+      <span><a href="{{details.developer_url}}" target="_blank">{{details.developer}}</a></span>
    </div>
    <div class="col-lg-4">
       {% if details.editors_choice %}
@@ -28,7 +28,7 @@
       {% if details.free %}
       <a class="btn btn-info" href="{{details.url}}">Free</a>
       {% else %}
-      <a class="btn btn-primary" href="{{details.url}}">{{details.price}}&nbsp;&nbsp;Buy</a>
+      <a class="btn btn-primary" href="{{details.url}}" target="_blank">{{details.price}}&nbsp;&nbsp;Buy</a>
       {% endif %}
    </div>
    <!-- /.col-md-4 -->
@@ -38,7 +38,7 @@
 <div class="col-md-12">
    <div id="summary">
       <p class="collapse" id="collapseSummary">
-         {{details.description_html|safe|bytestring}}
+         {{details.description_html|bytestring|safe}}
       </p>
       <center>
          <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false"
@@ -121,8 +121,8 @@
    </div>
    <div class="col-lg-4">
       <h6>Developer</h6>
-      <a href="{{details.developer_url}}">Website</a><br>
-      <a href="{{details.developer_email}}">{{details.developer_email}}</a><br>
+      <a href="{{details.developer_url}}" target="_blank">Website</a><br>
+      <a href="mailto:{{details.developer_email}}">{{details.developer_email}}</a><br>
       <p>{{details.developer_address|default:''}}</p>
    </div>
 </div>

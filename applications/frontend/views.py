@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import re
 
 from django.template.defaultfilters import register
@@ -16,10 +18,11 @@ def get_string_as_list(value):
 @register.filter
 def bytestring(value):
     """Convert bytestring"""
-    from django import template
-    s = value
-    t = template.Template('{{ s }}')
-    return t.render(template.Context({'s': s}))
+    value = str(value)[2:-1]
+    value = value.replace('\\xe2\\x80\\xa2', '•').replace('\\xe2\\x80\\x99', '’').replace('\\xe2\\x80\\x93', '–')
+    value = value.replace('\\xe2\\x80\\xa6', '…').replace('\\xe2\\x80\\x9d', '”').replace('\\xe2\\x80\\x9c', '“')
+    value = value.replace('\\xe3\\x80\\x90', '【').replace('\\xe3\\x80\\x91', '】').replace('\\t', '    ')
+    return value
 
 
 class AppHome(generic.ListView):
