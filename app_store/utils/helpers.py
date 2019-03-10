@@ -54,7 +54,7 @@ def get_details(app_id):
                 'score': scrapped['score'],
                 'title': scrapped['title'],
                 'url': scrapped['url'],
-                'description_html': scrapped['description_html'],
+                'description_html': scrapped['description_html'].decode('utf-8'),
                 'developer_address': scrapped['developer_address'],
                 'developer_email': scrapped['developer_email'],
                 'developer_url': scrapped['developer_url'],
