@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>App Store | {% block title %}{% endblock title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'frontend:home' %}">App Store</a>
+
+        <div class="row">
+        <div class="col-12">
+            <form action="{% url 'frontend:search' %}">
+                <div class="input-group">
+                  <input class="form-control border-secondary py-2" type="search" name="q" placeholder="Search" value="{{request.GET.q.strip}}" autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+      {% if apps|length > 0 and request.GET.q %}
+      <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">
+            Search result found for keyword " {{ request.GET.q.strip }} "
+        </p>
+      </div>
+        </div>
+      {% endif %}
+
+    <!-- Page Features -->
+    {% block content %}{% endblock content %}
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; App Store - 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+{% block script %}{% endblock script %}
+
+</body>
+</html>

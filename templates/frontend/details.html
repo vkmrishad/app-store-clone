@@ -1,0 +1,155 @@
+{% extends 'frontend/base.html'%}
+{% load i18n static %}
+<title>{% block title %}{{title}}{% endblock title %}</title>
+{% block content %}
+<!-- Heading Row -->
+<div class="row align-items-center my-5">
+   <div class="col-lg-3">
+      <img src="{{details.icon}}" width="200" alt="{{details.title}}">
+   </div>
+   <!-- /.col-lg-8 -->
+   <div class="col-lg-5">
+      <h3 class="font-weight-light">{{details.title}}</h3>
+      <span><a href="{{details.developer_url}}">{{details.developer}}</a></span>
+   </div>
+   <div class="col-lg-4">
+      {% if details.editors_choice %}
+      <div>Editor's Choice</div>
+      {% endif %}
+      <div class="clearfix">&nbsp;</div>
+      {% if details.score %}
+      <span class="rating"><b style="width: calc(({{details.score}}*100%) / 5)"
+         title="Rating: {{details.score}} out of 5"></b></span> {{details.reviews}} Reviews
+      {% else %}
+      <span class="rating"><b style="width: 0%" title="Rating: {{details.score}} out of 5"></b></span>
+      {{details.reviews}} Reviews
+      {% endif %}
+      <div class="clearfix">&nbsp;</div>
+      {% if details.free %}
+      <a class="btn btn-info" href="{{details.url}}">Free</a>
+      {% else %}
+      <a class="btn btn-primary" href="{{details.url}}">{{details.price}}&nbsp;&nbsp;Buy</a>
+      {% endif %}
+   </div>
+   <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
+<!-- Description -->
+<div class="col-md-12">
+   <div id="summary">
+      <p class="collapse" id="collapseSummary">
+         {{details.description_html|safe|bytestring}}
+      </p>
+      <center>
+         <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false"
+            aria-controls="collapseSummary"></a>
+      </center>
+   </div>
+</div>
+
+{% if details.recent_changes %}
+<hr>
+<h5>Recent Changes</h5>
+<div class="col-md-12">
+   <div id="whats-new">
+      <p>
+         {{details.recent_changes}}
+      </p>
+   </div>
+</div>
+{% endif %}
+
+{% if details.video %}
+<div class="clearfix">&nbsp;</div>
+<div class="embed-responsive embed-responsive-16by9">
+   <iframe class="embed-responsive-item" src="{{details.video}}"></iframe>
+</div>
+<div class="clearfix">&nbsp;</div>
+{% endif %}
+<hr>
+{% if details.screenshots %}
+<div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+   <div class="carousel-inner w-100" role="listbox">
+      {% for screen in details.screenshots|get_string_as_list %}
+      <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+         <img class="d-block col-3 img-fluid" src="{{screen}}" alt="First slide">
+      </div>
+      {% endfor %}
+   </div>
+   <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+   <span class="sr-only">Previous</span>
+   </a>
+   <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+   <span class="sr-only">Next</span>
+   </a>
+</div>
+{% endif %}
+<hr>
+<!-- Additional Information -->
+<h5>Additional Information</h5>
+<div class="clearfix">&nbsp;</div>
+<div class="row additional-info">
+   <div class="col-lg-4">
+      <h6>Size</h6>
+      <p>{{details.size}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Updated</h6>
+      <p>{{details.updated}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Installs</h6>
+      <p>{{details.installs}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Current Version</h6>
+      <p>{{details.current_version}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Requires Android</h6>
+      <p>{{details.required_android_version}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Content Rating</h6>
+      <p>{{details.content_rating}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Offered By</h6>
+      <p>{{details.developer}}</p>
+   </div>
+   <div class="col-lg-4">
+      <h6>Developer</h6>
+      <a href="{{details.developer_url}}">Website</a><br>
+      <a href="{{details.developer_email}}">{{details.developer_email}}</a><br>
+      <p>{{details.developer_address|default:''}}</p>
+   </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+{% endblock content %}
+{% block script %}
+<script>
+   $('#recipeCarousel').carousel({
+       interval: 10000
+   })
+
+   $('.carousel .carousel-item').each(function(){
+       var next = $(this).next();
+       if (!next.length) {
+       next = $(this).siblings(':first');
+       }
+       next.children(':first-child').clone().appendTo($(this));
+
+       for (var i=0;i<3;i++) {
+           next=next.next();
+           if (!next.length) {
+               next = $(this).siblings(':first');
+           }
+
+           next.children(':first-child').clone().appendTo($(this));
+         }
+   });
+
+</script>
+{% endblock script %}

@@ -1,0 +1,45 @@
+{% extends 'frontend/base.html'%}
+{% load i18n static %}
+<title>{% block title %}{{title}}{% endblock title %}</title>
+{% block content %}
+<div class="clearfix">&nbsp;</div>
+<div class="row text-center">
+   {% load el_pagination_tags %}
+   {% paginate apps %}
+   {% for app in apps %}
+   <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+         <a href="{% url 'frontend:details' app.app_id %}">
+         <img class="card-img-top" src="{{app.icon}}" alt="">
+         </a>
+         <div class="card-body">
+            <h6 class="card-title"><a href="{% url 'frontend:details' app.app_id %}">{{app.title}}</a></h6>
+         </div>
+         <div class="card-footer">
+            {% if app.score %}
+              <span class="rating"><b style="width: calc(({{app.score}}*100%) / 5)" title="Rating: {{app.score}} out of 5"></b></span>
+              {% else %}
+              <span class="rating"><b style="width: 0%" title="Rating: {{app.score}} out of 5"></b></span>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+   {% endfor %}
+
+   <div class="col-lg-12">
+      {% if apps|length <= 0 and request.GET.q %}
+      <center class="result-cls">No search result found for keyword " {{ request.GET.q.strip }} "</center>
+      {% elif apps|length <= 0 and not request.GET.q %}
+      <center class="result-cls">No search result found</center>
+      {% endif %}
+   </div>
+
+   <div class="col-lg-12">
+      {% get_pages %}
+      <div class="pagination justify-content-center">
+         {{ pages.get_rendered }}
+      </div>
+      <div class="clearfix">&nbsp;</div>
+   </div>
+</div>
+{% endblock content %}
