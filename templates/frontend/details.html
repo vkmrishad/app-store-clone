@@ -18,11 +18,15 @@
       {% endif %}
       <div class="clearfix">&nbsp;</div>
       {% if details.score %}
-      <span class="rating"><b style="width: calc(({{details.score}}*100%) / 5)"
-         title="Rating: {{details.score}} out of 5"></b></span> {{details.reviews}} Reviews
-      {% else %}
-      <span class="rating"><b style="width: 0%" title="Rating: {{details.score}} out of 5"></b></span>
-      {{details.reviews}} Reviews
+         <div class="star-ratings-css" title="Rating: {{details.score}} out of 5">
+            <div class="star-ratings-css-top" style="width: calc(({{details.score}}*100%) / 5)"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+         </div>&nbsp; &nbsp;<span class="review-s">{{details.reviews}} Reviews</span>
+         {% else %}
+         <div class="star-ratings-css" title="Rating: 0 out of 5">
+            <div class="star-ratings-css-top" style="width: 0%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+         </div>&nbsp; &nbsp;<span class="review-s">{{details.reviews}} Reviews</span>
       {% endif %}
       <div class="clearfix">&nbsp;</div>
       {% if details.free %}

@@ -17,9 +17,21 @@
          </div>
          <div class="card-footer">
             {% if app.score %}
-              <span class="rating"><b style="width: calc(({{app.score}}*100%) / 5)" title="Rating: {{app.score}} out of 5"></b></span>
-              {% else %}
-              <span class="rating"><b style="width: 0%" title="Rating: {{app.score}} out of 5"></b></span>
+               <div class="star-ratings-css" title="Rating: {{app.score}} out of 5">
+                  <div class="star-ratings-css-top" style="width: calc(({{app.score}}*100%) / 5)"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+               </div>
+            {% else %}
+               <div class="star-ratings-css" title="Rating: 0 out of 5">
+                  <div class="star-ratings-css-top" style="width: 0%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+               </div>
+            {% endif %}
+
+            {% if app.price == '0'  or  app.price == '' %}
+               <a class="btn btn-info price-btn" href="{{app.url}}" target="_blank">Free</a>
+            {% else %}
+               <a class="btn btn-primary price-btn" href="{{app.url}}" target="_blank">{{app.price}}</a>
             {% endif %}
          </div>
       </div>

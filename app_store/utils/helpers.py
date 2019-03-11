@@ -33,7 +33,7 @@ def get_search_data(query):
                         'url': scrap['url']
                     }
                 )
-    queryset = App.objects.filter(q)
+    queryset = App.objects.filter(q).order_by('-score')
     return queryset
 
 

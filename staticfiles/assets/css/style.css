@@ -43,120 +43,16 @@ body {
 	border: 1px solid #dee2e6;
 }
 
-.rating {
-	font-family: "Lucida Console", Monaco, monospace;
-	color: lightgray;
-	display: inline-block;
-	/*width: 5em;*/
-	height: 1em;
-	line-height: 1em;
-	position: relative;
-	font-size: 24px;
+a.btn.price-btn {
+    float: right;
+    font-size: 14px;
+    padding: 0px 8px;
+    height: 26px;
 }
 
-.rating::before {
-	content: "\02605\02605\02605\02605\02605";
+img.d-block.col-3.img-fluid {
+    min-width: 200px !important;
 }
-
-@-moz-document url-prefix() {
-	.rtg::before {
-		font-size: 165%;
-	}
-}
-
-.rating b {
-	color: gold;
-	display: inline-block;
-	height: 1em;
-	line-height: 1em;
-	position: absolute;
-	overflow: hidden;
-	left: 0;
-	top: 0;
-}
-
-.rating b::before {
-	content: "\02605\02605\02605\02605\02605";
-}
-
-@-moz-document url-prefix() {
-	.rating b::before {
-		font-size: 165%;
-	}
-}
-
-.rating i {
-	border: 0;
-	clip: rect(0000);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-}
-
-
-/* Star rating */
-
-.rating-nogo {
-	color: gold;
-	text-shadow: black 0 0 1px;
-	display: inline-block;
-	overflow: hidden;
-}
-
-.rating-nogo .half {
-	display: inline-block;
-	width: .5em;
-	overflow: hidden;
-}
-
-.rating-nogo .other {
-	-webkit-transform: rotateY(180deg);
-	text-shadow: none;
-	color: lightgray;
-}
-
-.rating-nogo i {
-	border: 0;
-	clip: rect(0000);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-}
-
-.star4::before {
-	content: "\02605\02605\02605\02605";
-}
-
-.star4half::before {
-	content: "\02605\02605\02605\02605\02605";
-}
-
-ratingnogo {
-	display: inline-block;
-	white-space: nowrap;
-	color: gold;
-	text-shadow: black 0 0 1px;
-	overflow: hidden;
-}
-
-ratingnogo.star4 {
-	width: 4em;
-}
-
-ratingnogo.star4half {
-	width: 4.5em;
-}
-
-.rating-nogo.star4half {
-	width: 4.5em;
-}
-
 
 /* Slider */
 
@@ -298,3 +194,36 @@ hr{
     z-index: -10;
 }
 
+/* Rating New */
+
+.star-ratings-css {
+    unicode-bidi: bidi-override;
+    color: #c5c5c5;
+    font-size: 18px;
+    height: 25px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    float: left;
+    word-wrap: normal;
+}
+.star-ratings-css-top {
+    color: #fbd333;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.star-ratings-css-bottom {
+    padding: 0;
+    display: block;
+    z-index: 0;
+}
+
+span.review-s {
+    margin: 2px;
+    display: block;
+}
