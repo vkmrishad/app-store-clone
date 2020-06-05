@@ -1,4 +1,4 @@
-Django==2.1.11
+Django==2.2.13
 django-extensions==2.1.6
 django-el-pagination==3.2.4
 psycopg2==2.7.7
